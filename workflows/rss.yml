@@ -1,17 +1,22 @@
 on:
   rss:
-    url: https://hnrss.org/newest?points=300&count=3
+    url:
+      - https://rss.owenyoung.com/sale/douban-pin-group.xml
+      - https://rss.owenyoung.com/sale/douban-driver-group.xml
+      - https://rss.owenyoung.com/sale/douban-dog-group.xml
+    config:
+      active: false
+      skipFirst: true
+
 jobs:
-  print:
-    name: Print
+  ifttt:
+    name: Make a Request to IFTTT
     runs-on: ubuntu-latest
     steps:
-      - name: Print Outputs
-        env:
-          title: ${{on.rss.outputs.title}}
-          contentSnippet: ${{on.rss.outputs.contentSnippet}}
-          link: ${{on.rss.outputs.link}}
-        run: |
-          echo title: $title
-          echo contentSnippet: $contentSnippet
-          echo link: $link
+      - uses: actionsflow/ifttt-webhook-action@v1
+        with:
+          event: doubansale
+          key: ${{ secrets.IFTTT_KEY }}
+          value1: ${{on.rss.outputs.title}}
+          value2: ${{on.rss.outputs.contentSnippet}}
+          value3: ${{on.rss.outputs.link}}

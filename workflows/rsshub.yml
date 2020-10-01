@@ -1,0 +1,34 @@
+on:
+  rsshub:
+    path:
+      - /douban/group/669481?filter_case_sensitive=false&filter_title=罐头|狗粮|爱肯拿|zeal|驱虫|姐妹们快|牛奶|试用|话费|免费|0元买|0元入|肯德基|冰淇淋|烤箱|生鲜|白泥|u先|深水泡弹|三分钟|清洁面膜|医美面膜|敷尔佳|螺蛳粉|米诺|抽奖|芙清|果酸|杏仁酸|hhkb|鸡蛋&filterout_title=求|转|求购|交流|已购|专楼|蒙牛|伊利|闲置|出|讨论|华为|开车|停车|代拍|完
+      - /douban/group/698716?filter_case_sensitive=false&filter_title=罐头|狗粮|爱肯拿|zeal|驱虫|姐妹们快|牛奶|试用|话费|免费|0元买|0元入|肯德基|冰淇淋|烤箱|生鲜|白泥|u先|深水泡弹|三分钟|清洁面膜|医美面膜|敷尔佳|螺蛳粉|米诺|抽奖|芙清|果酸|杏仁酸|hhkb|鸡蛋&filterout_title=求|转|求购|交流|已购|专楼|蒙牛|伊利|闲置|出|讨论|华为|开车|停车|代拍|完
+      - /douban/group/657658?filter_case_sensitive=false&filter_title=爱肯拿|狗粮|驱|滴剂|优惠|抽奖|奶|罐头|k9|巅峰|福来恩|zeal&filterout_title=求|转|求购|交流|已购|专楼|蒙牛|伊利|闲置|出|讨论|华为|开车|停车|代拍|完
+    config:
+      skipFirst: true
+      format: |
+        if (item.description) {
+          item.description = item.description.replace(/<[^>]*>/g, "")
+          if (item.description) {
+            item.description = item.description.trim()
+            if (item.description.length > 25) {
+              item.description = `${item.description.substring(0, 25)}...`
+            }
+          }
+        }
+        if (item.title) {
+          item.title = item.title.replace(/\[来自.+\]/g, "")
+        }
+        return item
+jobs:
+  ifttt:
+    name: Make a Request to IFTTT
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actionsflow/ifttt-webhook-action@v1
+        with:
+          event: doubansale
+          key: ${{ secrets.IFTTT_KEY }}
+          value1: ${{on.rsshub.outputs.title}}
+          value2: ${{on.rsshub.outputs.description}}
+          value3: ${{on.rsshub.outputs.link}}
