@@ -6,7 +6,7 @@
   "author": "Owen Young <theowenyoung@gmail.com>",
   "devDependencies": {
     "@actionsflow/trigger-rsshub": "^1.0.1",
-    "actionsflow": "^1.2.0-alpha.10"
+    "actionsflow": "^1.2.1"
   },
   "keywords": [
     "actionsflow",

@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run Actionsflow
-        uses: actionsflow/actionsflow-action@feat/schedule-task
+        uses: actionsflow/actionsflow-action@v1
         with:
           args: build
           json-secrets: ${{ toJSON(secrets) }}
