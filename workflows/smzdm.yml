@@ -1,0 +1,23 @@
+
+on:
+  rss:
+    url: http://feed.smzdm.com/
+    config:
+      filter:
+        title:
+          $regex: 历史低价
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send a telegram message
+        uses: appleboy/telegram-action@v0.1.0
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            *值得买: ${{ on.rss.outputs.title}}*
+            [${{on.rss.outputs.description}}](${{on.rss.outputs.link}})
+          format: markdown
+          disable_web_page_preview: true
