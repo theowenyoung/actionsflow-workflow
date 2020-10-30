@@ -20,5 +20,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Today maybe raining, temp: ${{on.weather.outputs.daily[0].temp.day}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
+            *Today maybe raining*, temp: ${{on.weather.outputs.daily[0].temp.day}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
           format: markdown

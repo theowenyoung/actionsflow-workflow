@@ -40,7 +40,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            *${{ on.rsshub.outputs.title}}*
-            [${{on.rsshub.outputs.description}}](${{on.rsshub.outputs.link}})
-          format: markdown
+            <b>${{ on.rsshub.outputs.title}}</b>
+            <a href="${{on.rsshub.outputs.link}}">${{on.rsshub.outputs.description}}</a>
+          format: html
           disable_web_page_preview: true

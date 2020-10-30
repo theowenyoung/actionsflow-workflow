@@ -17,7 +17,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            *值得买: ${{ on.rss.outputs.title}}*
-            [${{on.rss.outputs.description}}](${{on.rss.outputs.link}})
-          format: markdown
+            <b>值得买: ${{ on.rss.outputs.title}}</b>
+            <a href="${{on.rss.outputs.link}}">${{on.rss.outputs.description}}</a>
+          format: html
           disable_web_page_preview: true
