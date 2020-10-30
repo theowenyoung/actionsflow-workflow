@@ -1,0 +1,66 @@
+name: Send a daily digest telegram message about today's hot reddit posts
+on:
+  reddit:
+    url: https://reddit.com/top/
+    config:
+      every: "15 0 * * *"
+      timeZone: UTC
+      outputsMode: combine
+jobs:
+  telegram:
+    name: Send a telegram message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Format message
+        id: title
+        uses: actions/github-script@v2
+        with:
+          script: |
+            const outputs = ${{ toJSON(on.reddit.outputs) }};
+            const titles = outputs.map((item,index)=>{
+              return item.title
+            }).join("\n");
+            return {
+              title: titles
+            }
+      - name: Translate to ZH
+        id: translate
+        uses: fabasoad/translation-action@main
+        with:
+          provider: microsoft
+          api_key: ${{ secrets.MICROSOFT_TRANSLATE_API_KEY }}
+          lang: 'zh-Hans'
+          api_additional_parameter: westus2
+          source: ${{fromJSON(steps.title.outputs.result).title}}
+      - name: Format message
+        id: format
+        uses: actions/github-script@v2
+        env:
+          TEXT: ${{ steps.translate.outputs.text }}
+        with:
+          script: |
+            const outputs = ${{ toJSON(on.reddit.outputs) }};
+            const titleStr = process.env.TEXT || "";
+            const titleArray = titleStr.split('%0A')
+            const date = new Date()
+            const titles = outputs.map((item,index)=>{
+              return `<a href="${item.link}">${index+1}. ${titleArray[index]}</a>`
+            }).join(`
+
+            `);
+            const message = `<b>${titleArray[0].slice(0,36)}...</b> #reddit每日热门
+
+            大家好，今天${date.getFullYear()}-${date.getMonth()}-${date.getDate()})有${outputs.length}个reddit热门帖给大家分享，如下：
+
+            ${titles}
+
+            #reddit中文
+            `
+            return {message:message}
+      - name: Send a telegram message
+        uses: appleboy/telegram-action@v0.1.0
+        with:
+          to: ${{ secrets.TELEGRAM_R_C_ID }}
+          token: ${{ secrets.TELEGRAM_CHANNEL_DOG_TOKEN }}
+          message: ${{fromJSON(steps.format.outputs.result).message}}
+          format: html
