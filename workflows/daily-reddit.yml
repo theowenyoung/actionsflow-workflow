@@ -50,7 +50,7 @@ jobs:
             `);
             const message = `<b>${titleArray[0].slice(0,36)}...</b> #reddit每日热门
 
-            大家好，今天${date.getFullYear()}-${date.getMonth()}-${date.getDate()})有${outputs.length}个reddit热门帖给大家分享，如下：
+            大家好，今天(${date.getFullYear()}-${date.getMonth()}-${date.getDate()})有${outputs.length}个<a href="https://www.reddit.com/top">reddit热门帖</a>给大家分享，如下：
 
             ${titles}
 
