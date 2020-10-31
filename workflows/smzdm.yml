@@ -3,9 +3,19 @@ on:
   rss:
     url: http://feed.smzdm.com/
     config:
-      filter:
-        title:
-          $regex: 历史低价
+      filterScript: |
+        const title = item.title;
+        if(title.includes('历史低价')){
+          const keywords = ["罐头", "狗粮", "爱肯拿", "zeal", "驱虫", "姐妹们快", "牛奶", "肯德基", "冰淇淋", "烤箱", "生鲜", "白泥", "深水泡弹", "三分钟", "清洁面膜", "医美面膜", "敷尔佳", "螺蛳粉", "米诺", "芙清", "果酸", "杏仁酸", "hhkb", "鸡蛋","手机","苹果"];
+          keywords.some((keyword)=>{
+            return title.includes(keyword)
+          })
+          return true
+        }
+      filterOutputs:
+        title: 1
+        link: 1
+        contentSnippet: 1
 jobs:
   print:
     name: Print
@@ -18,6 +28,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             <b>值得买: ${{ on.rss.outputs.title}}</b>
-            <a href="${{on.rss.outputs.link}}">${{on.rss.outputs.description}}</a>
+            <a href="${{on.rss.outputs.link}}">${{on.rss.outputs.contentSnippet}}</a>
           format: html
           disable_web_page_preview: true
