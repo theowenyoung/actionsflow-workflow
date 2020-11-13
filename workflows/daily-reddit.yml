@@ -29,7 +29,7 @@ jobs:
         with:
           provider: microsoft
           api_key: ${{ secrets.MICROSOFT_TRANSLATE_API_KEY }}
-          lang: 'zh-Hans'
+          lang: "zh-Hans"
           api_additional_parameter: westus2
           source: ${{fromJSON(steps.title.outputs.result).title}}
       - name: Format message
@@ -41,7 +41,7 @@ jobs:
           script: |
             const outputs = ${{ toJSON(on.reddit.outputs) }};
             const titleStr = process.env.TEXT || "";
-            const titleArray = titleStr.split('%0A')
+            const titleArray = titleStr.split("\n")
             const date = new Date()
             const titles = outputs.map((item,index)=>{
               return `<a href="${item.link}">${index+1}. ${titleArray[index]}</a>`
