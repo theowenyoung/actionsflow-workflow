@@ -20,18 +20,19 @@ jobs:
             const titles = outputs.map((item,index)=>{
               return item.title
             }).join("\n");
-            return {
-              title: titles
-            }
+            return titles
+          result-encoding: string
       - name: Translate to ZH
         id: translate
-        uses: fabasoad/translation-action@main
+        uses: theowenyoung/translation-action@main
         with:
-          provider: microsoft
-          api_key: ${{ secrets.MICROSOFT_TRANSLATE_API_KEY }}
-          lang: "zh-Hans"
-          api_additional_parameter: westus2
-          source: ${{fromJSON(steps.title.outputs.result).title}}
+          source: ${{steps.title.outputs.result}}
+          provider: tencent
+          api_key: ${{ secrets.TENCENT_TRANSLATION_SECRET_KEY }}
+          lang: 'zh'
+          api_additional_parameter: ${{ secrets.TENCENT_TRANSLATION_SECRET_ID }}
+          api_additional_parameter2: na-siliconvalley
+          api_additional_parameter3: en
       - name: Format message
         id: format
         uses: actions/github-script@v2
