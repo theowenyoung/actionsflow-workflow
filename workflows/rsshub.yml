@@ -34,10 +34,13 @@ jobs:
     name: Make a Request to IFTTT
     runs-on: ubuntu-latest
     steps:
-      - uses: actionsflow/ifttt-webhook-action@v1
+      - name: Send a telegram message
+        uses: appleboy/telegram-action@v0.1.0
         with:
-          event: doubansale
-          key: ${{ secrets.IFTTT_KEY }}
-          value1: ${{on.rsshub.outputs.title}}
-          value2: ${{on.rsshub.outputs.description}}
-          value3: ${{on.rsshub.outputs.link}}
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            <b>${{ on.rsshub.outputs.title}}</b>
+            <a href="${{on.rsshub.outputs.link}}">${{on.rsshub.outputs.description}}</a>
+          format: html
+          disable_web_page_preview: true
