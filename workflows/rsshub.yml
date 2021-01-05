@@ -4,8 +4,8 @@ on:
       - path: /douban/group/669481
         query: &saleQuery
           filter_case_sensitive: false
-          filter_title: 罐头|狗粮|爱肯拿|渴望|姐妹们快|牛奶|冰淇淋|牛|肉|羊|来伊份|岩烧|烤箱|生鲜|面膜|螺蛳粉|米诺|果酸|杏仁酸|身体乳|鸡蛋|大米|薅|cr海盐|洗头膏
-          filterout_title: 求|转|求购|交流|已购|专楼|蒙牛|伊利|讨论|华为|停车|代拍|完|分装|意向|拼单|删
+          filter_title: 罐头|狗粮|爱肯拿|渴望|姐妹们快|牛奶|牛肉|羊肉|来伊份岩烧|来伊份面包|烤箱|生鲜|螺蛳粉|米诺|果酸|杏仁酸|鸡蛋|大米|薅|cr海盐|洗头膏|崔娅蓬松|洗鼻|橙
+          filterout_title: 求|转|求购|交流|已购|专楼|蒙牛|伊利|讨论|华为|停车|代拍|完|分装|意向|拼单|删|一元
       - path: /douban/group/698716
         query: *saleQuery
       - path: /douban/group/657658
