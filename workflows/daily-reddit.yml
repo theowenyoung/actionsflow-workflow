@@ -3,6 +3,7 @@ on:
   reddit:
     url: https://reddit.com/top/
     config:
+      active: false
       every: "15 0 * * *"
       timeZone: UTC
       outputsMode: combine
