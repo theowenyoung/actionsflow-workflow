@@ -1,0 +1,15 @@
+on:
+  webhook:
+jobs:
+  notify:
+    name: Send notifications
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send a telegram message
+        uses: appleboy/telegram-action@v0.1.0
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            通知: ${{on.webhook.outputs.query.message}}
+          format: html
