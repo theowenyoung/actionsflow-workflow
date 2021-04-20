@@ -16,7 +16,7 @@ on:
           filter_title: 爱肯拿|狗粮|优惠|奶|罐头|k9|巅峰|福来恩|zeal
           filterout_title: 求|转|求购|交流|已购|专楼|蒙牛|伊利|闲置|出|讨论|华为|开车|停车|代拍|完|分装|意向|拼单|删
     config:
-      active: false
+      active: true
       skipFirst: true
       format: |
         if (item.description) {
