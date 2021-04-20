@@ -5,7 +5,6 @@
   "version": "1.0.0",
   "author": "Owen Young <theowenyoung@gmail.com>",
   "devDependencies": {
-    "@actionsflow/trigger-rsshub": "^1.0.2",
     "actionsflow": "^1.7.0"
   },
   "keywords": [
@@ -26,5 +25,8 @@
   },
   "bugs": {
     "url": "https://github.com/actionsflow/actionsflow-workflow-default/issues"
+  },
+  "dependencies": {
+    "@actionsflow/trigger-rsshub": "^1.0.3"
   }
 }
