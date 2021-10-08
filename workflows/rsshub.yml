@@ -9,7 +9,7 @@ on:
       - path: /douban/group/698716
         query: &saleQuery
           filter_case_sensitive: false
-          filter_title: 罐头|狗粮|驱虫|牛奶|生鲜|三分钟|米诺|护发素|歌剧魅影|香水|螺蛳粉|生鲜|螺蛳粉|米诺
+          filter_title: 罐头|狗粮|牛奶|生鲜|三分钟|米诺|护发素|歌剧魅影|香水|螺蛳粉|生鲜|螺蛳粉
       - path: /douban/group/657658
         query:
           filter_case_sensitive: false
