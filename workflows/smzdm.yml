@@ -5,8 +5,8 @@ on:
       filterScript: |
         const title = item.title;
         if(title.includes('历史低价')){
-          const keywords = ["罐头", "狗粮", "爱肯拿", "zeal", "驱虫", "姐妹们快", "牛奶", "肯德基", "冰淇淋", "烤箱", "生鲜", "白泥", "深水泡弹", "三分钟", "清洁面膜", "医美面膜", "敷尔佳", "螺蛳粉", "米诺", "芙清", "果酸", "杏仁酸", "hhkb", "鸡蛋","手机","苹果"," K30s","至尊纪念版","摩托罗拉"];
-          const notIncludeKeywords = ["机油","车用品"]
+          const keywords = ["罐头","狗粮","驱虫","牛奶","生鲜","三分钟","米诺","护发素","歌剧魅影","香水","螺蛳粉","米诺"];
+          const notIncludeKeywords = ["求","付邮送","求购","交流","已购","专楼","闲置","出","讨论","停车","代拍","完","意向","拼单","封禁","避雷","支持","安踏","飞跃","蒙牛","华为","伊利","新疆","国产]
           const isInclude = keywords.some((keyword)=>{
             return title.includes(keyword)
           })
