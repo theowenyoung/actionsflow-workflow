@@ -16,22 +16,22 @@ on:
           filter_case_sensitive: false
           filter_title: 爱肯拿|狗粮|优惠|奶|罐头|k9|巅峰|福来恩|zeal
     config:
-    active: true
-    skipFirst: true
-    format: |
-      if (item.description) {
-        item.description = item.description.replace(/<[^>]*>/g, "")
+      active: true
+      skipFirst: true
+      format: |
         if (item.description) {
-          item.description = item.description.trim()
-          if (item.description.length > 120) {
-            item.description = `${item.description.substring(0, 120)}...`
+          item.description = item.description.replace(/<[^>]*>/g, "")
+          if (item.description) {
+            item.description = item.description.trim()
+            if (item.description.length > 120) {
+              item.description = `${item.description.substring(0, 120)}...`
+            }
           }
         }
-      }
-      if (item.title) {
-        item.title = item.title.replace(/\[来自.+\]/g, "")
-      }
-      return item
+        if (item.title) {
+          item.title = item.title.replace(/\[来自.+\]/g, "")
+        }
+        return item
 jobs:
   ifttt:
     name: Make a Request to IFTTT
