@@ -15,7 +15,7 @@ on:
         query:
           filter_case_sensitive: false
           filter_title: 爱肯拿|狗粮|优惠|奶|罐头|k9|巅峰|福来恩|zeal
-      config:
+    config:
       active: true
       skipFirst: true
       format: |
