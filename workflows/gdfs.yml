@@ -1,5 +1,7 @@
 on:
   script:
+    config:
+      active: false
     run: |
       const result = await helpers.axios.get("https://m.gdfs.com/goods/243361.html");
       const result1 = await helpers.axios.get("https://m.gdfs.com/goods/215206.html");
@@ -18,6 +20,7 @@ on:
         ];
       }
     deduplicationKey: id
+
 jobs:
   ifttt:
     name: Make a Request to IFTTT
